@@ -13,17 +13,20 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+import statistics
 from django.contrib import admin
 from django.urls import path
-from users import views
-from ticket import views
+from django.urls import include
+from django.conf.urls import include
+from LITReview import settings
+from users import views as users_views
+from ticket import views as ticket_views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('login/',views.login),
-    path('registration/', views.registration),
-    path('subscription/', views.subscription),
-    path('cticket/', views.c_ticket),
-    path('creview/', views.c_review),
-    path('cticketreview/', views.c_ticket_review)
+    path('users/', include("users.urls")),
+    path('ticket/', include("ticket.urls")),
 ]
+
+# urlpatterns += staticfiles_urlpatterns()
+# urlpatterns += statistics(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
