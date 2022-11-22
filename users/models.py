@@ -1,9 +1,13 @@
 from django.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
+from django.contrib.auth.models import AbstractUser
 
-class User(models.Model):
-    user_name = models.fields.CharField(max_length = 100)
-    first_name = models.fields.CharField(max_length = 100)
-    last_name = models.fields.CharField(max_length = 100)
-    birthday = models.fields.DateField()
-    
+class User(AbstractUser):
+    # username = models.CharField(max_length=40)
+    # firstname = models.CharField(max_length=40)
+    # lastname = models.CharField(max_length=40)
+    # birthday = models.DateField(blank=True)
+    # profile_photo = models.ImageField()
+    # email = models.EmailField(max_length=50, null=True)
+    pass
+
+

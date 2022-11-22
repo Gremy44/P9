@@ -18,14 +18,13 @@ from django.contrib import admin
 from django.urls import path
 from django.urls import include
 from django.conf.urls import include
-from LITReview import settings
-from users import views as users_views
-from ticket import views as ticket_views
+from LITReview import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('users/', include("users.urls")),
-    path('ticket/', include("ticket.urls")),
+    path('index/', views.index, name='index'),
+    path('', include("users.urls")),
+    path('', include("news_feed.urls")),
 ]
 
 # urlpatterns += staticfiles_urlpatterns()
