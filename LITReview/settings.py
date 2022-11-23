@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'users',
     'news_feed',
+    'ticket',
 ]
 
 MIDDLEWARE = [
@@ -59,6 +60,7 @@ TEMPLATES = [
         'DIRS': [BASE_DIR / "template/LITReview",
                 "users/template",
                 "news_feed/template",
+                "ticket/template",
                 ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -123,7 +125,7 @@ USE_TZ = True
 STATIC_URL = 'static/'
 
 STATICFILES_DIRS = [
-    BASE_DIR / "static/",
+    BASE_DIR / "static",
 ]
 
 # Default primary key field type
@@ -134,7 +136,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
 LOGIN_URL = 'login'
-
 LOGIN_REDIRECT_URL = 'home'
-
 LOGOUT_REDIRECT_URL = 'logout'
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = 'media/'

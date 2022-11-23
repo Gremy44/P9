@@ -1,3 +1,53 @@
 *{
-    background-color: rgb(215, 248, 250);
+    font-family: 'Roboto', sans-serif;
+    background-color: rgb(109, 218, 238);
+}
+
+img{
+    width: 50%;
+    border-radius: 10px;
+}
+
+/*---------------------------------------------------------------*/
+/*-----------------------------HEADER----------------------------*/
+/*---------------------------------------------------------------*/
+header{
+    display: flex;
+    flex-direction: row;
+}
+
+/*-----positionnement bloques-----*/
+div.pp{
+    flex:auto;
+}
+div.header-title{
+    flex:auto;
+}
+div.menu{
+    flex:auto;
+}
+
+/*------ intérieur bloques ------*/
+div.pp h1{
+    text-align: left;
+}
+div.header-title h1{
+    text-align: center;
+}
+/*---MENU---*/
+div.menu ul{
+    display: flex;
+    flex:auto;
+    text-align: center;
+    list-style-type:none;
+    padding: 0;
+}
+div.menu li{
+    margin: 2%;
+}
+div.menu ul li a{
+    text-decoration:none;
+}
+div.menu ul li a:hover{
+    
 }
