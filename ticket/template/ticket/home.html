@@ -1,0 +1,18 @@
+{% extends 'base_user_connected.html' %}
+{% block content %}
+    <div class="bouton_critique">
+        <button href="">Demander une critique</button>
+        <button><a href="{% url 'ticket_create' %}">Créer une critique</a></button>
+    </div>
+    <h2>Tickets</h2>
+    <div class="grid-container">
+        {% for ticket in tickets %}
+            <div class="post">
+                <a href="{% url 'view_ticket' ticket.id %}">
+                    <h4>Billet : {{ ticket.title }}</h4>
+                    <img src="{{ ticket.photo.image.url }}">
+                </a>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock content %}

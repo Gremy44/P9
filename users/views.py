@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, authenticate, logout
 from django.views.generic import View
+from django.conf import settings
 from . import forms
 
 def index(request):
@@ -32,3 +33,13 @@ class LoginPageView(View):
                 return redirect('home')
         message = 'Identifiants invalides.'
         return render(request, self.template_name, context={'form': form, 'message': message})
+
+def registration_page(request):
+    form = forms.Registration()
+    if request.method == 'POST':
+        form = forms.Registration(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect(settings.LOGIN_REDIRECT_URL)
+    return render(request, 'users/registration.html', context={'form':form})

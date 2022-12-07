@@ -22,11 +22,10 @@ from django.conf.urls import include
 from LITReview import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', views.index, name='index'),
-    path('', include("users.urls")),
-    path('', include("news_feed.urls")),
-    path('', include("ticket.urls")),
+    path('admin/', admin.site.urls),
+    path('users/', include("users.urls")),
+    path('ticket/', include("ticket.urls")),
 ]
 
 if settings.DEBUG:

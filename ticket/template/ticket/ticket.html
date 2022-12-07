@@ -1,10 +1,20 @@
 {% extends 'base_user_connected.html' %}
 
 {% block content %}
-    <h2>Telecharger une photo</h2>
+    
     <form method="post" enctype="multipart/form-data">
-        {{ form.as_p }}
+        <p>
+            <label for="id_title"></label>
+        </p>
+        {{ ticket_form.as_p }}
+        <hr>
+        <h3>Ajouter une photo</h3>
+        {{ photo_form.as_p }}
+        <hr>
+        <h3>Critique</h3>
+        {{ critique_form.as_p }}
         {% csrf_token %}
         <button type="submit">Publier</button>
+        <button><a href="{% url 'home' %}">Retour</a></button>
     </form>
 {% endblock content %}

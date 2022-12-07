@@ -3,5 +3,10 @@ from django.urls import path
 from ticket import views
 
 urlpatterns = [
-    path('ticket/upload/', views.photo_upload, name='ticket_upload'),
+    path('create/', views.ticket_upload, name='ticket_create'),
+    path('ticket/<int:ticket_id>', views.view_ticket, name='view_ticket'),
+    path('ticket/<int:ticket_id>/edit', views.ticket_edit, name='edit_ticket'),
+    path('home/', views.home, name='home'),
 ]
+
+'''path('upload/', views.photo_upload, name='ticket_upload'),'''
