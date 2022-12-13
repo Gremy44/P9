@@ -39,9 +39,23 @@ h2{
     border-width: 1px;
     border-radius: 1em;
 }
+
+h1.bienvenue{
+    color: #ece1ed;
+    background-color: #00000000;
+    display: block;
+    text-align: center;
+    text-transform: uppercase;
+    text-size-adjust: 200%;
+}
 h1{
     color: #ece1ed;
     background-color: #00000000;
+}
+div.log{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
 }
 a{
     color: white;
