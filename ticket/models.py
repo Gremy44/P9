@@ -2,9 +2,16 @@ from django.db import models
 from django.conf import settings
 from PIL import Image
 
+RATE_CHOICES = [
+                    ('1', '1 étoile'),
+                    ('2', '2 étoiles'),
+                    ('3', '3 étoiles'),
+                    ('4', '4 étoiles'),
+                    ('5', '5 étoiles'),
+                   ]
+
 class Photo(models.Model):
     image = models.ImageField()
-    caption = models.CharField(max_length=128, blank=True)
     uploader = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
 
@@ -19,34 +26,24 @@ class Photo(models.Model):
         super().save(*args, **kwargs)
         self.resize_image()
 
+
 class Ticket(models.Model):
-    title = models.CharField(max_length=128)
-    content = models.TextField(max_length=5000)
+    title = models.CharField(max_length=128, verbose_name='Titre du livre')
+    content = models.TextField(max_length=5000, verbose_name='Description')
     photo = models.ForeignKey(Photo, null=True, on_delete=models.SET_NULL, blank=True)
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     date_created = models.DateTimeField(auto_now_add=True)
-    adult = models.BooleanField(default=False)
-    starred = models.BooleanField(default=False)
+    
 
 class Critique(models.Model):
-    RATE_1 = 1
-    RATE_2 = 2
-    RATE_3 = 3
-    RATE_4 = 4
-    RATE_5 = 5
-
-    RATE_CHOICES = [
-                    (RATE_1, '1 étoile'),
-                    (RATE_2, '2 étoiles'),
-                    (RATE_3, '3 étoiles'),
-                    (RATE_4, '4 étoiles'),
-                    (RATE_5, '5 étoiles'),
-                   ]
-
-    title = models.CharField(max_length=128)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
+    title = models.CharField(max_length=128, verbose_name='Titre de la critique')
     rate = models.CharField(
            max_length=1,
            choices=RATE_CHOICES,
-           default=RATE_1,
+           default='1',
     )
-    comment = models.TextField(max_length=5000)
+    comment = models.TextField(max_length=5000, verbose_name='Votre commentaire')
+    ticket = models.ForeignKey(Ticket, null=True, on_delete=models.CASCADE)
+
+    

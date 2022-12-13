@@ -1,17 +1,16 @@
-{% extends 'base.html' %}
+{% extends 'base_user_connected.html' %}
 {% block content %}
     <h2>Modifier le ticket</h2>
     <form method="post">
         {{ edit_form.as_p }}
         {% csrf_token %}
-        <button type="submit" >Sauvegarder</button>
+        <button class="btn-valide" type="submit" >Sauvegarder</button>
     </form>
     <button><a href="{% url 'home' %}">Retour</a></button>
     <hr>
     <h3>Supprimer le ticket ?</h3>
-    <form method="post">
-        {{ delete_form }}
+    <form method="post" action="/ticket/ticket/{{ticket_id}}/delete">
         {% csrf_token %}
-        <button type="submit" >Supprimer</button>
+        <button class="btn-retour" type="submit" >Supprimer</button>
     </form>
 {% endblock content %}

@@ -2,10 +2,11 @@
 {% block content %}
 
     <h2>{{ ticket.title }}</h2>
-    <p><a href="{% url 'edit_ticket' ticket.id %}">Modifier le billet</a></p>
-    <button><a href="{% url 'home' %}">Retour</a></button>
     <img src="{{ticket.photo.image.url}}">
-    <p>{{ ticket.photo.caption }}</p>
-    <p>{{ ticket.content }}</p>
+    <p class="user_comment">{{ ticket.content }}</p>
+    <div class="view_ticket">
+        <p class="modif"><a href="{% url 'edit_ticket' ticket.id %}">Modifier le billet</a></p>
+        <button class="btn-retour"><a href="{% url 'home' %}">Retour</a></button>
+    </div>
 
 {% endblock content %}

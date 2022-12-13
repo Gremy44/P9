@@ -6,10 +6,11 @@ from . import models
 class PhotoForm(forms.ModelForm):
     class Meta:
         model = models.Photo
-        fields = ['image', 'caption']
+        fields = ['image']
 
 class TicketForm(forms.ModelForm):
     edit_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+    # critique_form = forms.BooleanField(widget=forms.HiddenInput, initial=False)
     class Meta:
         model = models.Ticket
         fields = ['title', 'content']
