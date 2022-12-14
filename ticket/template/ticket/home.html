@@ -1,8 +1,8 @@
 {% extends 'base_user_connected.html' %}
 {% block content %}
     <div class="bouton_critique">
-        <button class="bouton_critique--btn"><a href="{% url 'ticket_create' %}">Demander une critique</a></button>
-        <button class="bouton_critique--btn"><a href="{% url 'critique_create' %}">Créer une critique</a></button>
+        <button class="bouton_critique--btn"><a href="{% url 'ticket_create' %}" name="new_ticket">Demander une critique</a></button>
+        <button class="bouton_critique--btn"><a href="{% url 'critique_create' %}"  name="new_critique">Créer une critique</a></button>
     </div>
     <hr>
     <div class="grid-container">

@@ -324,3 +324,19 @@ p{
     flex-direction: column;
     justify-content: center;
 }
+
+/*---------------------------------------------------------------*/
+/*-----------------------------CommSS----------------------------*/
+/*---------------------------------------------------------------*/
+
+div.commentaire{
+    color: #ece1ed;
+    background-color: #00000000;
+    text-shadow: -1px 0px 4px rgba(0, 0, 0, 0.6);
+    padding: 1em;
+    margin: 1em;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 1em;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}

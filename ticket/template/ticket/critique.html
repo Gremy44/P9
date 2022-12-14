@@ -11,8 +11,10 @@
         <h3>Ajouter une photo</h3>
         {{ photo_form.as_p }}
         <hr>
-        {{ critique_form.as_p }}
-        {% csrf_token %}
+        {% if critique_state %}
+            {{ critique_form.as_p }}
+            {% csrf_token %}
+        {% endif %}
         <div class="btn_ticket_critique">
             <button class="btn-valide" type="submit">Publier</button>
             <button class="btn-retour" ><a href="{% url 'home' %}">Retour</a></button>

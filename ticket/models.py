@@ -36,7 +36,7 @@ class Ticket(models.Model):
     
 
 class Critique(models.Model):
-    author = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, on_delete=models.CASCADE)
+    author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     title = models.CharField(max_length=128, verbose_name='Titre de la critique')
     rate = models.CharField(
            max_length=1,
@@ -44,6 +44,6 @@ class Critique(models.Model):
            default='1',
     )
     comment = models.TextField(max_length=5000, verbose_name='Votre commentaire')
-    ticket = models.ForeignKey(Ticket, null=True, on_delete=models.CASCADE)
+    ticket = models.ForeignKey(Ticket, on_delete=models.CASCADE)
 
     

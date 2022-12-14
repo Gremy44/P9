@@ -8,5 +8,13 @@
         <p class="modif"><a href="{% url 'edit_ticket' ticket.id %}">Modifier le billet</a></p>
         <button class="btn-retour"><a href="{% url 'home' %}">Retour</a></button>
     </div>
+    
+    {% for critiques in critique %}
+        <div class = "commentaire">
+            <h3>Critique proposé par {{critiques.author}}</h3>
+            <h4>Titre : {{critiques.title}}</h4>
+            <p> Son commentaire : {{critiques.comment}}</p>
+        </div>
+    {% endfor %}
 
 {% endblock content %}

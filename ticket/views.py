@@ -1,6 +1,5 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required, permission_required
-from django.shortcuts import get_object_or_404
 from . import forms, models
 
 '''@login_required
@@ -15,7 +14,7 @@ def photo_upload(request):
     return render(request, 'ticket/ticket.html', context={'form': form})'''
 
 
-@login_required
+'''@login_required
 # @permission_required('ticket.ticket_upload', raise_exception=True)
 def ticket_upload(request):
     ticket_form = forms.TicketForm()
@@ -41,39 +40,49 @@ def ticket_upload(request):
     }
     
     return render(request, 'ticket/ticket.html', context=context)
-
+'''
 @login_required
 # @permission_required('ticket.ticket_upload', raise_exception=True)
 def critique_upload(request):
     ticket_form = forms.TicketForm()
     photo_form = forms.PhotoForm()
     critique_form = forms.CritiqueForm()
+
+    critique_state = False
+
+    if request.path == '/ticket/create/critique':
+        critique_state = True
+
     if request.method == 'POST':
         photo_form = forms.PhotoForm(request.POST, request.FILES)
         ticket_form = forms.TicketForm(request.POST)
         critique_form = forms.CritiqueForm(request.POST)
-        if all([ticket_form.is_valid(), photo_form.is_valid(), critique_form.is_valid()]):
 
+        if all([ticket_form.is_valid(), photo_form.is_valid()]):
             photo = photo_form.save(commit=False)
             photo.uploader = request.user
+            photo.save()
             
             ticket = ticket_form.save(commit=False)
             ticket.author = request.user
             ticket.photo = photo
-
-            critique = critique_form.save(commit=False)
-            critique.uploader = request.user
-            ticket.critique = critique
-
-            photo.save()
             ticket.save()
-            critique.save()
 
-            return redirect('home')
+        if critique_state == True:
+            if critique_form.is_valid():
+                critique = critique_form.save(commit=False)
+                critique.author = request.user
+                critique.ticket = ticket
+                critique.save()
+                critique_state = True
+
+        return redirect('home')
+
     context = {
         'ticket_form': ticket_form,
         'photo_form': photo_form,
         'critique_form': critique_form,
+        'critique_state': critique_state,
     }
     
     return render(request, 'ticket/critique.html', context=context)
@@ -133,4 +142,17 @@ def home(request):
 @login_required
 def view_ticket(request, ticket_id):
     ticket = get_object_or_404(models.Ticket, id=ticket_id)
-    return render(request, 'ticket/view_ticket.html', {'ticket':ticket})
+    critique = models.Critique.objects.all()
+    print(ticket_id)
+    # print(critique[0].comment)
+    
+    cricri = [critiques for critiques in critique if critiques.ticket_id == ticket_id ]
+    print(cricri)
+
+
+
+    context = {
+        'ticket':ticket,
+        'critique':cricri,
+    }
+    return render(request, 'ticket/view_ticket.html', context=context)
