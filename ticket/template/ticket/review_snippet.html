@@ -1,0 +1,14 @@
+<div class="review">
+    <h3>{{post.review_title}}</h3>
+    <p>Review de {{post.author}}</p>
+    <p>Fait le {{post.date_created}}</p>
+    <p>Sa critique : {{post.comment}}</p>
+    <p>Note : {{post.rate}}/5</p>
+    <blockquote>
+        <div class="ticket">
+            <p>ticket de {{post.author}}</p>
+            <p>Fait le {{post.date_created}}</p>
+            <img src="{{ post.ticket.photo.image.url }}" alt="">
+        </div>
+    </blockquote>
+</div>

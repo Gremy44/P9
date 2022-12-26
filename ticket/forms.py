@@ -1,5 +1,4 @@
 from django import forms
-
 from . import models
 
 
@@ -10,15 +9,21 @@ class PhotoForm(forms.ModelForm):
 
 class TicketForm(forms.ModelForm):
     edit_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
-    # critique_form = forms.BooleanField(widget=forms.HiddenInput, initial=False)
     class Meta:
         model = models.Ticket
-        fields = ['title', 'content']
+        fields = ['ticket_title', 'content']
 
-class CritiqueForm(forms.ModelForm):
+class ReviewForm(forms.ModelForm):
+    edit_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
     class Meta:
-        model = models.Critique
-        fields = ['title', 'rate', 'comment']
+        model = models.Review
+        fields = ['review_title', 'rate', 'comment']
+        widgets = {
+            'rate': forms.RadioSelect(choices=models.RATE_CHOICES),
+        }
 
 class DeleteTicketForm(forms.Form):
     delete_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
+class DeleteReviewForm(forms.Form):
+    delete_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)

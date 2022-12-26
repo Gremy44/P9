@@ -1,62 +1,81 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.contrib.auth.decorators import login_required, permission_required
 from . import forms, models
-
-'''@login_required
-def photo_upload(request):
-    form = forms.PhotoForm()
-    if request.method == 'POST':
-        form = forms.PhotoForm(request.POST, request.FILES)
-        photo = form.save(commit=False)
-        photo.uploader = request.user
-        photo.save()
-        return redirect('home')
-    return render(request, 'ticket/ticket.html', context={'form': form})'''
+from itertools import chain
+from django.db.models import CharField, Value
 
 
-'''@login_required
-# @permission_required('ticket.ticket_upload', raise_exception=True)
-def ticket_upload(request):
-    ticket_form = forms.TicketForm()
-    photo_form = forms.PhotoForm()
-    if request.method == 'POST':
-        photo_form = forms.PhotoForm(request.POST, request.FILES)
-        ticket_form = forms.TicketForm(request.POST)
-        if all([ticket_form.is_valid(), photo_form.is_valid()]):
-
-            photo = photo_form.save(commit=False)
-            photo.uploader = request.user
-            photo.save()
-
-            ticket = ticket_form.save(commit=False)
-            ticket.author = request.user
-            ticket.photo = photo
-            ticket.save()
-
-            return redirect('home')
-    context = {
-        'ticket_form': ticket_form,
-        'photo_form': photo_form,
-    }
-    
-    return render(request, 'ticket/ticket.html', context=context)
-'''
 @login_required
-# @permission_required('ticket.ticket_upload', raise_exception=True)
-def critique_upload(request):
+def feed(request):
+    tickets = models.Ticket.objects.all()
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+    
+    reviews = []
+    has_review = False
+
+    for ticket in tickets:
+        review = models.Review.objects.filter(ticket_id=ticket.id)
+        review = review.annotate(content_type=Value('REVIEW', CharField()))
+        if review.exists():
+            review = review.annotate(has_review = Value(False))
+        else: 
+            review = review.annotate(has_review = Value(True))
+        reviews.extend(review)
+
+    # combine and sort the two types of posts
+    posts = sorted(
+        chain(reviews, tickets), 
+        key=lambda post: post.date_created, 
+        reverse=True
+    )
+    
+    context = {
+        'posts': posts,
+        'has_review': has_review
+    }
+    return render(request, 'feed.html', context=context)
+
+
+@login_required
+def post(request):
+    reviews = models.Review.objects.filter(author_id = request.user)
+    # returns queryset of reviews
+    reviews = reviews.annotate(content_type=Value('REVIEW', CharField()))
+
+    tickets = models.Ticket.objects.filter(author_id = request.user) 
+    # returns queryset of tickets
+    tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
+
+    # combine and sort the two types of posts
+    posts = sorted(
+        chain(reviews, tickets), 
+        key=lambda post: post.date_created, 
+        reverse=True
+    )
+
+    context = {
+        'posts': posts,
+    }
+    return render(request, 'post.html', context=context)
+
+
+@login_required
+def ticket_create(request):
+
     ticket_form = forms.TicketForm()
     photo_form = forms.PhotoForm()
-    critique_form = forms.CritiqueForm()
+    review_form = forms.ReviewForm()
 
-    critique_state = False
+    # check if user want create simple ticket or ticket with review
+    review_state = False
 
-    if request.path == '/ticket/create/critique':
-        critique_state = True
-
+    if request.path == '/ticket/createreview/':
+        review_state = True
+        
     if request.method == 'POST':
         photo_form = forms.PhotoForm(request.POST, request.FILES)
         ticket_form = forms.TicketForm(request.POST)
-        critique_form = forms.CritiqueForm(request.POST)
+        review_form = forms.ReviewForm(request.POST)
 
         if all([ticket_form.is_valid(), photo_form.is_valid()]):
             photo = photo_form.save(commit=False)
@@ -68,91 +87,41 @@ def critique_upload(request):
             ticket.photo = photo
             ticket.save()
 
-        if critique_state == True:
-            if critique_form.is_valid():
-                critique = critique_form.save(commit=False)
-                critique.author = request.user
-                critique.ticket = ticket
-                critique.save()
-                critique_state = True
+        if review_state == True:
+            if review_form.is_valid():
+                review = review_form.save(commit=False)
+                review.author = request.user
+                review.ticket = ticket
+                review.save()
 
-        return redirect('home')
+        return redirect('feed')
 
     context = {
         'ticket_form': ticket_form,
         'photo_form': photo_form,
-        'critique_form': critique_form,
-        'critique_state': critique_state,
+        'review_form': review_form,
+        'review_state': review_state,
     }
-    
-    return render(request, 'ticket/critique.html', context=context)
-
-'''@login_required
-# @permission_required('ticket.ticket_upload', raise_exception=True)
-def critique_upload(request):
-    critique_form = forms.CritiqueForm()
-    if request.method == 'POST':
-        critique_form = forms.CritiqueForm(request.POST)
-        if critique_form.is_valid:
-
-            critique = critique_form.save(commit=False)
-            critique.uploader = request.user
-            critique.save()
-
-    context = {
-        'critique_form': critique_form,
-    }
-    
-    return render(request, 'ticket/critique.html', context=context)'''
+    return render(request, 'ticket_create.html', context=context)
 
 @login_required
-def ticket_edit(request, ticket_id):
-    ticket = get_object_or_404(models.Ticket, id=ticket_id)
-    edit_form = forms.TicketForm(instance=ticket)
+def review(request, ticket_id):
+    ticket = models.Ticket.objects.get(id = ticket_id)
+    review_form = forms.ReviewForm()
+
     if request.method == 'POST':
-        if 'edit_ticket' in request.POST:
-            edit_form = forms.TicketForm(request.POST, instance=ticket)
-            if edit_form.is_valid():
-                edit_form.save()
-                return redirect('home')
-    context = {'edit_form': edit_form,
-               'ticket_id': ticket.id,
-    }
-    return render(request, 'ticket/edit_ticket.html', context=context)
 
-def ticket_delete(request, ticket_id):
-    ticket = get_object_or_404(models.Ticket, id=ticket_id)
-    edit_form = forms.TicketForm(instance=ticket)
-    delete_form = forms.DeleteTicketForm()
-    if request.method == 'POST':
-        ticket.delete()
-        return redirect('home')
-    context = {'edit_form': edit_form,
-               'delete_form': delete_form,
-               'ticket_id': ticket.id,
-    }
-    return render(request, 'ticket/edit_ticket.html', context=context)
+        review_form = forms.ReviewForm(request.POST)
 
-@login_required
-def home(request):
-    photos = models.Photo.objects.all()
-    ticket = models.Ticket.objects.all()
-    return render(request, 'ticket/home.html', context={'photos': photos, 'tickets':ticket})
-
-@login_required
-def view_ticket(request, ticket_id):
-    ticket = get_object_or_404(models.Ticket, id=ticket_id)
-    critique = models.Critique.objects.all()
-    print(ticket_id)
-    # print(critique[0].comment)
-    
-    cricri = [critiques for critiques in critique if critiques.ticket_id == ticket_id ]
-    print(cricri)
-
-
+        if review_form.is_valid():
+            review = review_form.save(commit=False)
+            review.author = request.user
+            review.ticket = ticket
+            review.save()
 
     context = {
         'ticket':ticket,
-        'critique':cricri,
+        'review_form': review_form,
     }
-    return render(request, 'ticket/view_ticket.html', context=context)
+    return render(request, 'review.html', context=context)
+    

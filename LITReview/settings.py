@@ -57,9 +57,10 @@ ROOT_URLCONF = 'LITReview.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "template/LITReview",
-                "users/template",
-                "ticket/template",
+        'DIRS': [
+                BASE_DIR / "template/LITReview",
+                "users/template/users",
+                "ticket/template/ticket",
                 ],
         'APP_DIRS': True,
         'OPTIONS': {
@@ -130,7 +131,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'users.User'
 
 LOGIN_URL = 'login'
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = 'feed'
 LOGOUT_REDIRECT_URL = 'logout'
 
 MEDIA_URL = '/media/'

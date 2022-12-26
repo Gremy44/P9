@@ -1,0 +1,58 @@
+{% extends 'base_user_connected.html' %}
+
+{% block content %}
+    {{find_user_form.as_p}}
+    <form action="" method="post">
+        <input class="searchfield" name="username" type="text" placeholder="Search">
+        <button type="submit">Suivre</button>
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% csrf_token %}
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Abonnés</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for f in follower %}
+                    <td class="text">{{f.follower.username}}</td>
+                {% endfor %}
+            </tr>   
+        </tbody>
+    </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Abonnement</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for f in followed %}
+                    <td class="text">{{f.followed.username}}</td>
+                {% endfor %}
+            </tr>   
+            <tr>
+                {% for f in followed %}
+                    <form action="{% url 'unsubscribe' %}" method="post">
+                        {% csrf_token %}
+                        <td>
+                            <input type="hidden" name="unsubscribe_id" value="{{ f.id }}">
+                            <button type="submit">Désabonner</button>
+                        </td>
+                    </form>
+                {% endfor %}
+            </tr>
+        </tbody>
+    </table>
+    
+{% endblock content %}

@@ -1,8 +1,12 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, authenticate, logout
+from django.shortcuts import render, redirect, HttpResponse
+from django.contrib import messages
+from django.contrib.auth import login, authenticate, logout, get_user_model
+from django.contrib.auth.decorators import login_required, permission_required
 from django.views.generic import View
 from django.conf import settings
-from . import forms
+from . import forms, models
+from itertools import chain
+
 
 def index(request):
     return render(request, 'users/index.html')
@@ -30,7 +34,7 @@ class LoginPageView(View):
             )
             if user is not None:
                 login(request, user)
-                return redirect('home')
+                return redirect('feed')
         message = 'Identifiants invalides.'
         return render(request, self.template_name, context={'form': form, 'message': message})
 
@@ -43,3 +47,42 @@ def registration_page(request):
             login(request, user)
             return redirect(settings.LOGIN_REDIRECT_URL)
     return render(request, 'users/registration.html', context={'form':form})
+
+@login_required
+def subscription(request):
+
+    abonnements = models.Subscription.objects.filter(follower=request.user)
+    abonnes = models.Subscription.objects.filter(followed=request.user)
+
+    if request.method == 'POST':
+        User = get_user_model()
+        username_saisie = request.POST.get('username')
+        subscription = models.Subscription()
+        subscription.follower = request.user
+        subscription.followed = User.objects.filter(username=username_saisie).first()
+        print("followed : ", request.user.username, type(request.user.username))
+        print("saisie : ", username_saisie, type(username_saisie))
+
+        if models.Subscription.objects.filter(follower=request.user, followed=subscription.followed).exists():
+            messages.add_message(request, messages.ERROR, "Vous suivez déjà cet utilisateur;")
+        elif request.user.username == username_saisie:
+            messages.add_message(request, messages.ERROR, "Vous ne pouvez pas vous suivre vous même")
+        elif subscription.followed == None:
+            messages.add_message(request, messages.ERROR, "Aucun utilisateur trouvé avec ce nom d'utilisateur.")
+        else: 
+            subscription.save()     
+        
+    context = {
+        'follower': abonnes,
+        'followed': abonnements,
+    }
+    
+    return render(request, 'subscription.html', context=context)
+
+@login_required
+def unsubscribe(request):
+    if request.method == 'POST':
+        unsubscribe_id = request.POST.get('unsubscribe_id')
+        unsub = models.Subscription.objects.get(id=unsubscribe_id)
+        unsub.delete()
+        return redirect('subscription')

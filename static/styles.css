@@ -20,15 +20,7 @@ body{
     text-decoration:none;
 }
 h3{
-    text-transform: uppercase;
-    font-weight: normal;
-    color: #ece1ed;
-    background-color: #00000000;
-    text-shadow: -1px 0px 4px rgba(0, 0, 0, 0.6);
-    padding: 1em;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 1em;
+    color: aliceblue;
 }
 h2{
     color: #ece1ed;
@@ -99,7 +91,7 @@ button{
     border-radius: 50px;
     border:0px;
     transition : 500ms;
-    transform: translateY(0);
+    
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -107,13 +99,20 @@ button{
     margin: 1em;
 }
 
-button:hover{
+button:hover{ font-weight: 0;
+    font-size: 14px;
+    color: #fff;
     transition : 500ms;
-    padding: 10px 50px;
-    transform : translateY(-0px);
     background: linear-gradient(229deg, #ffd89a 0%, #9ecdff 100%);
-    color: #0066cc;
-    border: solid 0px #0066cc;
+    padding: 14px 35px;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 50px;
+    border:0px;
+    transition : 500ms;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
     margin: 1em;
 }
 
@@ -339,4 +338,61 @@ div.commentaire{
     border-width: 1px;
     border-radius: 1em;
     box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+}
+
+table{
+    border-style: solid;
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 1px;
+    border-radius: 1em;
+}
+button.follow_button{
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(229deg, #f5e6ff 0%, #9ecdff 100%);
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border:0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    
+}
+button.follow_button:hover{
+    transition: 1000ms;
+    font-weight: 0;
+    font-size: 14px;
+    color: #fff;
+    background: linear-gradient(229deg, #f5e6ff 0%, #9effda 100%);
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    border-radius: 3em;
+    border:0px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    cursor: pointer;
+    
+}
+td.text{
+    border-radius: 5px;
+    text-align: center;
+}
+
+thead{
+    background-color: rgb(196, 172, 233);
+    color: #fff;
+    border-radius: 1em;
+    
+}
+tr{
+    display: flex;
+    flex-direction: column;
+    margin:1em;
+    padding:0.5em;
+}
+tbody{
+    display: flex;
+    flex-direction: row;
 }

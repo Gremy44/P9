@@ -1,0 +1,13 @@
+{% extends 'base_user_connected.html' %}
+{% block content %}
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ ticket_form.as_p}}
+    {{ photo_form.as_p }}
+    {% if review_state %}
+        {{ review_form.as_p }}
+    {% endif %}
+    <button type="submit">Valider</button>
+    <button><a href="{% url 'feed' %}"></a>Retour</button>
+</form>
+{% endblock content %}

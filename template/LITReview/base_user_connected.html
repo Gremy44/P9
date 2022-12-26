@@ -18,15 +18,19 @@
     </div>
     <div class="menu">
         <ul class="menu-menu">
-            <li><a class="menu-menu_a" href="{% url 'home' %}">Flux</a></li>
-            <li><a class="menu-menu_a" href="{% url 'ticket_create' %}">Posts</a></li>
-            <li><a class="menu-menu_a" href="">Abonnements</a></li>
+            <li><a class="menu-menu_a" href="{% url 'feed' %}">Flux</a></li>
+            <li><a class="menu-menu_a" href="{% url 'post' %}">Posts</a></li>
+            <li><a class="menu-menu_a" href="{% url 'subscription' %}">Abonnements</a></li>
             <li><a class="menu-menu_a" href="{% url 'logout' %}">Déconnexion</a></li>
         </ul>
     </div>
     <hr>    
     <div class="pp">
         <h1>Profile de {{ request.user }}</h1>
+    </div>
+    <div class="bouton_critique">
+        <button class="bouton_critique--btn"><a href="{% url 'ticket_create' %}">Demander une critique</a></button>
+        <button class="bouton_critique--btn"><a href="{% url 'review_create' %}">Créer une critique</a></button>
     </div>
 </header>
 <body>

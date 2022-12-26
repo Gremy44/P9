@@ -1,4 +1,5 @@
 from django import forms
+from . import models
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import get_user_model
 
@@ -10,6 +11,12 @@ class LoginForm(forms.Form):
 class Registration(UserCreationForm):
     class Meta(UserCreationForm):
         model = get_user_model()
-        fields = ['username', 'first_name', 'last_name', 'email']
+        fields = ['username']
 
-    
+class FindUser(forms.Form):
+    username = forms.CharField(max_length=50, label="Nom d'utilisateur")
+
+    class Meta:
+        model = models.User
+        fields = ['username']
+

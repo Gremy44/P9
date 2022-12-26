@@ -1,0 +1,13 @@
+{% extends 'base_user_connected.html' %}
+
+{% block content %}
+
+    <form method="post">
+        {{review_form.as_p}}
+        <button type="submit">Envoyer</button>
+        {% csrf_token %}
+    </form>
+
+    {% include 'ticket_snippet.html' with post=ticket %} 
+
+{% endblock content %}
