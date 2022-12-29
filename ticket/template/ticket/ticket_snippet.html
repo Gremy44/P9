@@ -1,7 +1,17 @@
 <div class="ticket">
     <h3>{{post.ticket_title}}</h3>
-    <p>ticket de {{post.author}}</p>
+
+    {% if post.author == user %}
+        <p>Vous avez demandé une critique</p>
+    {% else %}
+        <p>Demande de critique de {{post.author}}</p>
+    {% endif %}
+
     <p>Fait le {{post.date_created}}</p>
     <p>Commentaire : {{post.content}}</p>
     <img src="{{ post.photo.image.url }}" alt="">
+
+    {% if post.has_review == False %}
+        <button class="review"><a href="{% url 'review' post.id %}">Créer une critique</a></button>
+    {% endif %}
 </div>

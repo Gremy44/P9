@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% block content %}
-<h1 class="bienvenue">Bienvenue</h1>
-<div class="log">
-    <button><a href="{% url 'login' %}">Se connecter</a></button>
-    <button><a href="{% url 'registration' %}">S'inscrire</a></button>
+<div class="login">
+    <h1 class="bienvenue">Bienvenue</h1>
+    <div class="log">
+        <button><a href="{% url 'login' %}">Se connecter</a></button>
+        <button><a href="{% url 'registration' %}">S'inscrire</a></button>
+    </div>
 </div>
 {% endblock content %}

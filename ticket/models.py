@@ -38,9 +38,9 @@ class Ticket(models.Model):
     def has_review(self):
         review_count = Review.objects.filter(ticket=self).count()
         if review_count == 0:
-            return True
-        else: 
             return False
+        else: 
+            return True
 
 class Review(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

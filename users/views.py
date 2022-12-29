@@ -46,7 +46,7 @@ def registration_page(request):
             user = form.save()
             login(request, user)
             return redirect(settings.LOGIN_REDIRECT_URL)
-    return render(request, 'users/registration.html', context={'form':form})
+    return render(request, 'registration.html', context={'form':form})
 
 @login_required
 def subscription(request):

@@ -1,398 +1,381 @@
 :root{
-    --main-bg-color:rgb(215, 215, 215);
-    --main-padding-button:10px
-}
-html{
-    max-width: 800px;
-    width: 800px;
-    margin-left: auto;
-    margin-right: auto;
-}
-body{
-    background: rgb(174,244,255);
-    background: linear-gradient(315deg, rgba(174,244,255,1) 0%, rgba(144,45,253,1) 100%);
-    background-attachment: fixed;
+    --main-ticket-margin:10px;
+    --main-ticket-padding:15px;
+    --main-border-width:1px;
+    --main-border-radius:15px;
+    --main-ratio-width:95%;
+    --main-space-between-ticket:10px;
+    --main-box-shadow:0px 0px 15px rgba(0, 0, 0, 0.5);
 }
 
 *{
     font-family: 'Roboto', sans-serif;
-    
     text-decoration:none;
-}
-h3{
-    color: aliceblue;
-}
-h2{
-    color: #ece1ed;
-    background-color: #00000000;
-    text-shadow: -1px 0px 4px rgba(0, 0, 0, 0.6);
-    padding: 1em;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 1em;
-}
 
-h1.bienvenue{
-    color: #ece1ed;
-    background-color: #00000000;
-    display: block;
-    text-align: center;
-    text-transform: uppercase;
-    text-size-adjust: 200%;
-}
-h1{
-    color: #ece1ed;
-    background-color: #00000000;
-}
-div.log{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-}
-a{
-    color: white;
-    background-color: #00000000;
-}
+    max-width: 800px;
 
-p.modif{
-    font-weight: 0;
-    font-size: 14px;
-    color: #fff;
-    background: linear-gradient(229deg, #f5e6ff 0%, #9ecdff 100%);
-    padding: 14px 35px;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    border-radius: 50px;
-    border:0px;
-    transition : 500ms;
-    transform: translateY(0);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-    margin: 1em;
-}
-
-img{
-    width: 100%;
-    border-radius: 10px;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    display: block;
     margin-left: auto;
     margin-right: auto;
-}
 
-button{
-    font-weight: 0;
-    font-size: 14px;
-    color: #fff;
-    background: linear-gradient(229deg, #f5e6ff 0%, #9ecdff 100%);
-    padding: 14px 35px;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    border-radius: 50px;
-    border:0px;
-    transition : 500ms;
-    
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-    margin: 1em;
-}
+    background: linear-gradient(315deg, rgba(174,244,255,1) 0%, rgba(144,45,253,1) 100%);
+    background-attachment: fixed;
 
-button:hover{ font-weight: 0;
-    font-size: 14px;
-    color: #fff;
-    transition : 500ms;
-    background: linear-gradient(229deg, #ffd89a 0%, #9ecdff 100%);
-    padding: 14px 35px;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    border-radius: 50px;
-    border:0px;
-    transition : 500ms;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-    margin: 1em;
-}
-
-button.btn-retour:hover{
-    transition : 500ms;
-    padding: 10px 50px;
-    transform : translateY(-0px);
-    background: linear-gradient(229deg, #ff775c 0%, #9ecdff 100%);
-    color: #0066cc;
-    border: solid 0px #0066cc;
-    margin: 1em;
-}
-
-button.btn-valide:hover{
-    transition : 500ms;
-    padding: 10px 50px;
-    transform : translateY(-0px);
-    background: linear-gradient(229deg, #5cffcb 0%, #9ecdff 100%);
-    color: #0066cc;
-    border: solid 0px #0066cc;
-    margin: 1em;
-}
-
-button.bouton_critique--btn{
-    margin: 1em;
-}
-
-div.bouton_critique{
-    justify-content: center;
-    margin: 1em;
-}
-
-div.btn_ticket_critique{
-    display: flex;
-    flex-direction: row;
-    margin: 1em;
-}
-
-div.view_ticket{
-    display: flex;
-    flex-direction: row;
-    margin: 1em;
-}
-
-p.modif{
-    font-weight: 0;
-    font-size: 14px;
-    color: #fff;
-    background: linear-gradient(229deg, #f5e6ff 0%, #9ecdff 100%);
-    padding: 14px 35px;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    border-radius: 50px;
-    border:0px;
-    transition : 500ms;
-    transform: translateY(0);
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-    margin: 1em;
-}
-p.modif:hover{
-    transition : 500ms;
-    padding: 10px 50px;
-    transform : translateY(-0px);
-    background: linear-gradient(229deg, #ffd89a 0%, #9ecdff 100%);
-    color: #0066cc;
-    border: solid 0px #0066cc;
-    margin: 1em;
-}
-
-p.user_comment{
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 1em;
-    padding:1em;
-    color: aliceblue;
-    background-color: #00000000;
-}
-/*---------------------------------------------------------------*/
-/*-----------------------------HEADER----------------------------*/
-/*---------------------------------------------------------------*/
-header{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-/*-----positionnement bloques-----*/
-div.pp{
-    
-}
-div.header-title{
-    font-size: 4vw;
-}
-div.menu{
-    
-}
-/*------ intérieur bloques ------*/
-div.pp{
-    text-align: left;
-    background-color: #00000000;
-}
-div.header-title h1{
-    color: aliceblue;
-    text-shadow: -1px 0px 4px rgba(0, 0, 0, 0.6);
-    text-align: center;
-}
-
-/*---MENU---*/
-div.menu{
-    display: flex;
-}
-ul.menu-menu{
-    margin: 0em auto;
-	padding: 1em;
-    justify-items: center;
-    border-radius: 1em;
-    background-color: #9bccd6;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-}
-li{
-    list-style-type: none;
-    float: left;
-	display: inline;
-	position: relative;
-    margin:1em;
-    padding-left: 1em;
-    padding-right: 1em;
-    background-color: #00000000;
-}
-a.menu-menu_a:hover{
-    color: rgb(168, 235, 255);
-    text-shadow: -1px 0px 4px rgba(255,255,255,0.6);
     transition: 500ms;
 }
 
-/*---------------------------------------------------------------*/
-/*------------------------BOUTON CRITIQUE------------------------*/
-/*---------------------------------------------------------------*/
+body{
+    margin-bottom: 100px;
+}
+
+input{
+    background: whitesmoke;
+    box-shadow: 0px 0px 15px rgb(125, 125, 125);
+
+    padding: 5px;
+    padding-left: 2%;
+    padding-right: 2%;
+
+    margin:15px;
+
+    border-radius: 15px;
+    border-style: none;
+}
+
+a{
+    color: rgb(255, 255, 255);
+    background: transparent;
+    background-color: transparent;
+    text-shadow: 0px 0px 5px rgb(125, 125, 125);
+}
+
+span{
+    display: none;
+}
+
+label{
+    color: rgb(255, 255, 255);
+    background: transparent;
+    background-color: transparent;
+    text-shadow: 0px 0px 5px rgb(126, 126, 126);
+}
+
+li{
+    list-style-type: none;
+    background: transparent;
+    background-color: transparent;
+}
+
+/* ---------------------------------------------------------------
+   -----------------------   HEADER   ----------------------------
+   ---------------------------------------------------------------*/
+
+h1.title{
+    color:whitesmoke;
+    font-size: 5em;
+    text-shadow: 0 0 35px grey;
+}
+
+header{
+    display: flex;
+    flex-direction: column;
+    max-width: 800px;
+}
+
+ul.menu-menu{
+    display: flex;
+    flex-direction: row;
+    padding-left: 0px;
+    text-align: center;
+}
+
+div.header-title{
+    display: flex;
+    text-align: center;
+}
+
+div.menu{
+    margin: 0;
+
+    border-style: solid;
+    border-width: var(--main-border-width);
+    border-color: whitesmoke;
+    border-radius: 15px;
+}
+
+a.menu-menu_a:hover{
+    text-shadow: 0px 0px 20px rgb(168, 255, 252);
+}
+
+/* ---------------------------------------------------------------
+   -----------------------   ENTETE   ----------------------------
+   ---------------------------------------------------------------*/
+
+div.entete{
+    margin-top: 35px;
+    margin-bottom: 35px;
+}
+
+/* ---------------------------------------------------------------
+   -----------------------   BOUTON   ----------------------------
+   ---------------------------------------------------------------*/
+
+button{
+    display: block;
+    cursor: pointer;
+
+    padding: 10px;
+    margin: 5px;
+
+    border-radius: 20px;
+
+    width: 200px;
+
+    border-style: none;
+    background: linear-gradient(90deg, rgba(174,244,255,1) 0%, rgb(255, 248, 205) 100%);
+
+    color: rgb(255, 255, 255);
+    text-shadow: 0px 0px 5px rgb(124, 124, 124);
+
+    box-shadow: var(--main-box-shadow);
+}
 
 div.bouton_critique{
     display: flex;
-    justify-items: auto;
-    text-align: center;
-}
-
-/*---------------------------------------------------------------*/
-/*-------------------------GRID CONTAINER------------------------*/
-/*---------------------------------------------------------------*/
-
-div.grid-container{
-    display: flex;
-    flex-direction: column;
-    align-content: center;
-}
-
-
-/*---------------------------------------------------------------*/
-/*-----------------------------FOOTER----------------------------*/
-/*---------------------------------------------------------------*/
-
-footer{
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    justify-content: space-between;
-    align-items: center;
-    padding: 1em;
-}
-
-.icon_footer a{
-    display: flex;
-    flex-direction: row;
-    justify-content: right;
-}
-
-.icon_footer__ic{
-    width: 10%;
-    margin: 0.5em;
-    height: auto;
-}
-
-/*---------------------------------------------------------------*/
-/*-----------------------------CHAMPS----------------------------*/
-/*---------------------------------------------------------------*/
-
-input#id_title{
-    border-radius: 3px;
-    border-style: solid;
-    display: table;
-}
-
-textarea#id_content{
-    border-radius: 3px;
-    border-style: solid;
-    display: table;
-}
-
-textarea#id_comment{
-    border-radius: 3px;
-    border-style: solid;
-    display: table;
-}
-
-p{
-    display: flex;
-    flex-direction: column;
     justify-content: center;
 }
 
-/*---------------------------------------------------------------*/
-/*-----------------------------CommSS----------------------------*/
-/*---------------------------------------------------------------*/
-
-div.commentaire{
-    color: #ece1ed;
-    background-color: #00000000;
-    text-shadow: -1px 0px 4px rgba(0, 0, 0, 0.6);
-    padding: 1em;
-    margin: 1em;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 1em;
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+button.bouton_critique--btn{
+    margin-left: 35px;
+    margin-right: 35px;
 }
+
+button.bouton_critique--btn:hover{
+    background: linear-gradient(90deg, rgb(181, 174, 255) 0%, rgb(255, 248, 205) 100%);
+}
+
+button.edit:hover{
+    transition: 500ms;
+    background: linear-gradient(90deg, rgb(181, 174, 255) 0%, rgb(255, 248, 205) 100%);
+}
+
+button.delete:hover{
+    transition: 500ms;
+    background: linear-gradient(90deg, rgb(255, 174, 174) 0%, rgb(255, 248, 205) 100%);
+}
+
+button.review:hover{
+    transition: 500ms;
+    background: linear-gradient(90deg, rgb(181, 174, 255) 0%, rgb(255, 248, 205) 100%);
+}
+
+button.validate:hover{
+    transition: 500ms;
+    background: linear-gradient(90deg, rgb(175, 255, 174) 0%, rgb(255, 248, 205) 100%);
+}
+
+button.back:hover{
+    transition: 500ms;
+    background: linear-gradient(90deg, rgb(181, 174, 255) 0%, rgb(255, 248, 205) 100%);
+}
+
+/* ---------------------------------------------------------------
+   -----------------------   BILLET   ----------------------------
+   ---------------------------------------------------------------*/
+
+blockquote{
+    width: var(--main-ratio-width);
+    margin-right: -5px;
+}
+
+div.review{
+    width: var(--main-ratio-width);
+    height: auto;
+
+    border-style: solid;
+    border-width: var(--main-border-width);
+    border-color: whitesmoke;
+    border-radius: 15px;
+
+    padding: var(--main-ticket-padding);
+
+    padding-top: var(--main-space-between-ticket);
+    padding-bottom: var(--main-space-between-ticket);
+
+    margin-top: var(--main-space-between-ticket);
+    margin-bottom: var(--main-space-between-ticket);
+
+    box-shadow: var(--main-box-shadow);
+}
+
+div.ticket{
+    width: var(--main-ratio-width);
+    height: auto;
+
+    border-style: solid;
+    border-width: var(--main-border-width);
+    border-color: whitesmoke;
+    border-radius: 15px;
+
+    padding: var(--main-ticket-padding);
+
+    padding-top: var(--main-space-between-ticket);
+    padding-bottom: var(--main-space-between-ticket);
+
+    margin-top: var(--main-space-between-ticket);
+    margin-bottom: var(--main-space-between-ticket);
+
+    box-shadow: var(--main-box-shadow);
+}
+
+img{
+    width: var(--main-ratio-width);
+    height: auto;
+    border-radius: var(--main-border-radius);
+
+    margin-top: var(--main-space-between-ticket);
+    margin-bottom: var(--main-space-between-ticket);
+
+    box-shadow: var(--main-box-shadow);
+}
+
+div.btn-post{
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+}
+
+form{
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------
+   ----------------------- ABONNEMENTS ---------------------------
+   ---------------------------------------------------------------*/
 
 table{
     border-style: solid;
-    margin-left: auto;
-    margin-right: auto;
-    border-width: 1px;
-    border-radius: 1em;
-}
-button.follow_button{
-    font-weight: 0;
-    font-size: 14px;
-    color: #fff;
-    background: linear-gradient(229deg, #f5e6ff 0%, #9ecdff 100%);
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    border:0px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-    
-}
-button.follow_button:hover{
-    transition: 1000ms;
-    font-weight: 0;
-    font-size: 14px;
-    color: #fff;
-    background: linear-gradient(229deg, #f5e6ff 0%, #9effda 100%);
-    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
-    border-radius: 3em;
-    border:0px;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    cursor: pointer;
-    
-}
-td.text{
-    border-radius: 5px;
-    text-align: center;
+    border-width: var(--main-border-width);
+    border-color: whitesmoke;
+
+    margin: auto;
+    margin-top: var(--main-ticket-margin);
+    margin-bottom: var(--main-ticket-margin);
 }
 
-thead{
-    background-color: rgb(196, 172, 233);
-    color: #fff;
-    border-radius: 1em;
-    
+tbody{
+    display: flex;
+    flex-direction: row;
 }
 tr{
     display: flex;
     flex-direction: column;
-    margin:1em;
-    padding:0.5em;
+    flex-wrap: nowrap;
+    justify-content: space-around;
 }
-tbody{
+
+td{
+    border-style: solid;
+    border-width: var(--main-border-width);
+    border-color: whitesmoke;
+
+    height: 75px;
+    width: 250px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+td.text{
+    height: 75px;
+    width: 250px;
+
+    text-align: center;
+    line-height: 75px;
+
+    font-size: 125%;
+    color: whitesmoke;
+}
+
+form.find_users{
+    display: flex;
+    flex-direction: column;
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
+
+input.searchfield{
+    margin: 0;
+    margin-top: var(--main-ticket-margin);
+    margin-bottom: var(--main-ticket-margin);
+}
+
+/* ---------------------------------------------------------------
+   -----------------------   FOOTER    ---------------------------
+   ---------------------------------------------------------------*/
+
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+
+    margin-left: -15px;
+
+    padding: 15px;
+    display: flex;
+    height: 50px;
+}
+img.icon_footer__ic{
+    height: 50px;
+    margin: 0;
+}
+
+/* ---------------------------------------------------------------
+   ----------------------- DECONNEXION ---------------------------
+   ---------------------------------------------------------------*/
+
+div.logout{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+div.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+div.log{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+div.connexion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+form.connexion{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* ---------------------------------------------------------------
+   -----------------------  CRITIQUE  ----------------------------
+   ---------------------------------------------------------------*/
+
+div#id_rate{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+div.ticket-btn{
+    display: flex;
+}
+
+div.registration-btn{
     display: flex;
     flex-direction: row;
 }

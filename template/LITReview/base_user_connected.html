@@ -13,9 +13,9 @@
 </head>
 
 <header>
-    <div class='header-title'>
-        <h1>LITReview</h1>
-    </div>
+    
+    <h1 class="title">LITReview</h1>
+    
     <div class="menu">
         <ul class="menu-menu">
             <li><a class="menu-menu_a" href="{% url 'feed' %}">Flux</a></li>
@@ -23,23 +23,14 @@
             <li><a class="menu-menu_a" href="{% url 'subscription' %}">Abonnements</a></li>
             <li><a class="menu-menu_a" href="{% url 'logout' %}">Déconnexion</a></li>
         </ul>
-    </div>
-    <hr>    
-    <div class="pp">
-        <h1>Profile de {{ request.user }}</h1>
-    </div>
-    <div class="bouton_critique">
-        <button class="bouton_critique--btn"><a href="{% url 'ticket_create' %}">Demander une critique</a></button>
-        <button class="bouton_critique--btn"><a href="{% url 'review_create' %}">Créer une critique</a></button>
-    </div>
+    </div>    
 </header>
 <body>
     {% block content %}{% endblock %}
 </body>
+
 <footer>
     <p class="tf">Made from Réunion Island</p>
-        <div class="icon_footer">
-            <a href="https://github.com/Gremy44/P9" target="_blank"><img class="icon_footer__ic" src="\media\signe-github.png" alt="signe-github"></a>
-        </div>
+    <a href="https://github.com/Gremy44/P9" target="_blank"><img class="icon_footer__ic" src="\media\signe-github.png" alt="signe-github"></a>
 </footer>
 </html>

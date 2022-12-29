@@ -2,12 +2,18 @@
 
 {% block content %}
 
+<div class="entete">
+  <h1>Profile de {{ request.user }}</h1>
+  <div class="bouton_critique">
+    <button class="bouton_critique--btn"><a href="{% url 'ticket_create' %}">Demander une critique</a></button>
+    <button class="bouton_critique--btn"><a href="{% url 'review_create' %}">Créer une critique</a></button>
+  </div>
+</div>
+<hr>
+
 {% for post in posts %}
   {% if post.content_type == 'TICKET' %}
     {% include 'ticket_snippet.html' with post=post %}
-      {% if post.has_review == True %}
-        <button><a href="{% url 'review' post.id %}">Créer une critique</a></button>
-      {% endif %}
   {% elif post.content_type == 'REVIEW' %}
     {% include 'review_snippet.html' with post=post %}
   {% endif %}

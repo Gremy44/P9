@@ -2,12 +2,14 @@
 
 {% block content %}
     <h1>Inscription</h1>
-    {% if form.errors %}
-        {{ form.errors }}
-    {% endif %}
-    <form method="post">
-        {{ form.as_p }}
-        {% csrf_token %}
-        <button type="submit" >S’inscrire</button>
-    </form>
+    
+    
+        <form method="post">
+            {{ form.as_p }}
+            {% csrf_token %}
+            <div class="registration-btn">
+            <button class="validate" type="submit" >S’inscrire</button>
+        </form>
+        <button class="back"><a href="{% url 'index' %}">Retour</a></button>
+    </div>
 {% endblock content %}

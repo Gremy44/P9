@@ -5,10 +5,24 @@
     {% for post in posts %}
         {% if post.content_type == 'TICKET' %}
             {% include 'ticket_snippet.html' with post=post %}
-            <button>Editer mon ticket</button>
+            <div class="btn-post">
+                <button class="edit" type="button"><a href="{% url 'edit_ticket' post.id %}">Editer mon ticket</a></button>
+                <form method="post" action="{% url 'delete_ticket' post.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="delete">Supprimer mon ticket</button>
+                </form>
+            </div>
         {% elif post.content_type == 'REVIEW' %}
             {% include 'review_snippet.html' with post=post %}
-            <button>Editer ma critique</button>
+            <div class="btn-post">
+                <button class="edit"><a href="{% url 'edit_review' post.id %}">Editer ma critique</a></button>
+                <form method="post" action="{% url 'delete_review' post.id %}">
+                    {% csrf_token %}
+                    <input type="hidden" name="_method" value="DELETE">
+                    <button type="submit" class="delete">Supprimer ma critique</button>
+                </form>
+            </div>
         {% endif %}
     {% endfor %}
 

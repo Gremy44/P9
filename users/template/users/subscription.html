@@ -2,9 +2,9 @@
 
 {% block content %}
     {{find_user_form.as_p}}
-    <form action="" method="post">
+    <form class="find_users" action="" method="post">
         <input class="searchfield" name="username" type="text" placeholder="Search">
-        <button type="submit">Suivre</button>
+        <button type="submit" class="validate" >Suivre</button>
         {% if messages %}
             <ul class="messages">
                 {% for message in messages %}
@@ -14,21 +14,8 @@
         {% endif %}
         {% csrf_token %}
     </form>
-    <table>
-        <thead>
-            <tr>
-                <th colspan="2">Abonnés</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                {% for f in follower %}
-                    <td class="text">{{f.follower.username}}</td>
-                {% endfor %}
-            </tr>   
-        </tbody>
-    </table>
-
+    <hr>
+    
     <table>
         <thead>
             <tr>
@@ -47,12 +34,28 @@
                         {% csrf_token %}
                         <td>
                             <input type="hidden" name="unsubscribe_id" value="{{ f.id }}">
-                            <button type="submit">Désabonner</button>
+                            <button type="submit" class="delete" >Désabonner</button>
                         </td>
                     </form>
                 {% endfor %}
             </tr>
         </tbody>
     </table>
+
+    <table>
+        <thead>
+            <tr>
+                <th colspan="2">Abonnés</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                {% for f in follower %}
+                    <td class="text">{{f.follower.username}}</td>
+                {% endfor %}
+            </tr>   
+        </tbody>
+    </table>
+
     
 {% endblock content %}

@@ -1,12 +1,28 @@
 <div class="review">
     <h3>{{post.review_title}}</h3>
-    <p>Review de {{post.author}}</p>
+    {% if post.author == user %}
+        <p>Vous avez posté une review</p>
+    {% else %}
+        <p>{{post.author}} à poster une review</p>
+    {% endif %}
     <p>Fait le {{post.date_created}}</p>
-    <p>Sa critique : {{post.comment}}</p>
-    <p>Note : {{post.rate}}/5</p>
+    
+
+    {% if post.rate == 1 %}
+        <p>La review : {{post.comment}}  -  ★☆☆☆☆</p>
+    {% elif post.rate == 2 %}
+        <p>La review : {{post.comment}}  -  ★★☆☆☆</p>
+    {% elif post.rate == 3 %}
+        <p>La review : {{post.comment}}  -  ★★★☆☆</p>
+    {% elif post.rate == 4 %}
+        <p>La review : {{post.comment}}  -  ★★★★☆</p>
+    {% elif post.rate == 5 %}
+        <p>La review : {{post.comment}}  -  ★★★★★</p>
+    {% endif %}
+    
     <blockquote>
         <div class="ticket">
-            <p>ticket de {{post.author}}</p>
+            <p>Demande de critique de {{post.ticket.author}}</p>
             <p>Fait le {{post.date_created}}</p>
             <img src="{{ post.ticket.photo.image.url }}" alt="">
         </div>
