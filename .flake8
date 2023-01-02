@@ -1,0 +1,8 @@
+[flake8]
+exclude = p9env, 
+          ticket/migrations, 
+          ticket/admin,
+          ticket/tests,
+          users/admin,
+          users/tesst,
+          users/migrations

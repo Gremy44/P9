@@ -7,14 +7,18 @@ class PhotoForm(forms.ModelForm):
         model = models.Photo
         fields = ['image']
 
+
 class TicketForm(forms.ModelForm):
     edit_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
     class Meta:
         model = models.Ticket
         fields = ['ticket_title', 'content']
 
+
 class ReviewForm(forms.ModelForm):
     edit_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
     class Meta:
         model = models.Review
         fields = ['review_title', 'rate', 'comment']
@@ -22,8 +26,10 @@ class ReviewForm(forms.ModelForm):
             'rate': forms.RadioSelect(choices=models.RATE_CHOICES),
         }
 
+
 class DeleteTicketForm(forms.Form):
     delete_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)
+
 
 class DeleteReviewForm(forms.Form):
     delete_review = forms.BooleanField(widget=forms.HiddenInput, initial=True)
