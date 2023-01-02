@@ -15,19 +15,20 @@ def get_users_viewable_reviews(user):
 
     # recuperer les review des gens auquelles on est abonné
     abonnements = Subscription.objects.filter(follower=user)
-    print('abonnements : ', abonnements)
 
+    # Récupère les reviews de mes abonnements
     for abonnement in abonnements:
         review_abonnes = Review.objects.filter(
             author=abonnement.followed).exclude(ticket__author=user)
         review_abonnes = review_abonnes.annotate(
             content_type=Value('REVIEW', CharField()))
-        print('review_abonnes : ', review_abonnes)
+        # concatène une chaine avec toutes les reviews, les miennes
+        # comme celles des autres 
         reviews = chain(reviews, review_abonnes)
 
     return reviews
 
-
+# même chose qu'au dessus mais avec les tickets 
 def get_users_viewable_tickets(user):
     # recuperation de mes tickets
     tickets = Ticket.objects.filter(author=user)
