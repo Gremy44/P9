@@ -27,20 +27,6 @@ body{
     margin-bottom: 100px;
 }
 
-input{
-    background: whitesmoke;
-    box-shadow: 0px 0px 15px rgb(125, 125, 125);
-
-    padding: 5px;
-    padding-left: 2%;
-    padding-right: 2%;
-
-    margin:15px;
-
-    border-radius: 15px;
-    border-style: none;
-}
-
 a{
     color: rgb(255, 255, 255);
     background: transparent;
@@ -131,7 +117,7 @@ button{
     width: 200px;
 
     border-style: none;
-    background: linear-gradient(90deg, rgba(174,244,255,1) 0%, rgb(255, 248, 205) 100%);
+    background: linear-gradient(90deg,rgb(136 192 200) 0%, rgb(190 93 213) 100%);
 
     color: rgb(255, 255, 255);
     text-shadow: 0px 0px 5px rgb(124, 124, 124);
@@ -379,3 +365,39 @@ div.registration-btn{
     display: flex;
     flex-direction: row;
 }
+
+input{
+    background: whitesmoke;
+    
+
+    padding: 5px;
+    padding-left: 2%;
+    padding-right: 2%;
+
+    margin:15px;
+
+    border-radius: 15px;
+    border-style: none;
+}
+
+input[type="radio"] {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    width: 24px;
+    height: 24px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    background: none;
+  }
+  
+  input[type="radio"]::before {
+    content: '★';
+    font-size: 24px;
+    color: #ccc;
+  }
+  
+  input[type="radio"]:checked::before {
+    color: #fff200;
+  }

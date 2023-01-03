@@ -23,12 +23,14 @@ def get_users_viewable_reviews(user):
         review_abonnes = review_abonnes.annotate(
             content_type=Value('REVIEW', CharField()))
         # concatène une chaine avec toutes les reviews, les miennes
-        # comme celles des autres 
+        # comme celles des autres
         reviews = chain(reviews, review_abonnes)
 
     return reviews
 
-# même chose qu'au dessus mais avec les tickets 
+# même chose qu'au dessus mais avec les tickets
+
+
 def get_users_viewable_tickets(user):
     # recuperation de mes tickets
     tickets = Ticket.objects.filter(author=user)
@@ -89,7 +91,6 @@ def post(request):
 
 @login_required
 def ticket_create(request):
-
     ticket_form = TicketForm()
     photo_form = PhotoForm()
     review_form = ReviewForm()

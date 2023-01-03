@@ -4,11 +4,11 @@ from PIL import Image
 
 
 RATE_CHOICES = (
-    (1, '1 étoile'),
-    (2, '2 étoiles'),
-    (3, '3 étoiles'),
-    (4, '4 étoiles'),
-    (5, '5 étoiles'),
+    (1, '1'),
+    (2, '2'),
+    (3, '3'),
+    (4, '4'),
+    (5, '5'),
 )
 
 
