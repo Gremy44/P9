@@ -1,11 +1,13 @@
 # Projet P9-LITReview
 
-* Cloner le git 
-`git clone https://github.com/Gremy44/P7.git`
+* Cloner le git dans le repertoire souhaité 
+`git clone https://github.com/Gremy44/P9.git`
+* Rendez vous dans le repertoire P9 
+`cd P9`
 * Créer votre environnement virtuel 
-`python -m venv env`
+`python -m venv p9env`
 * Activer l'environnement virtuel
-`env/Scripts/activate`
+`p9env\Scripts\activate`
 * Installer les librairies grâce au fichier 'requirements.txt' avec la commande 
 `pip install -r requirements.txt`
 * Demarrer le serveur local avec la commande 
@@ -14,7 +16,7 @@
 `http://127.0.0.1:8000/`
 
 ## Profil d'utilisateurs
-Pour pouvoir tester les fonctionnalités de l'application, plusieurs profils utilisateurs ont été générés. Vous pouvez vous connecter avec l'un d'eux pour voir les posts qui ont déjà été faits :
+Pour pouvoir tester les fonctionnalités de l'application, plusieurs profils utilisateurs éxistent déjà. Vous pouvez vous connecter avec l'un d'eux pour voir les posts qui ont déjà été faits :
 >ID : User_1
 MDP : User_1
 
