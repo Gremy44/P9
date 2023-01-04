@@ -53,6 +53,8 @@ def feed(request):
     reviews = get_users_viewable_reviews(request.user)
     tickets = get_users_viewable_tickets(request.user)
 
+    is_review = False
+
     # combine and sort the two types of posts
     posts = sorted(
         chain(reviews, tickets),
@@ -62,6 +64,7 @@ def feed(request):
 
     context = {
         'posts': posts,
+        'is_review': is_review,
     }
     return render(request, 'feed.html', context=context)
 
@@ -76,6 +79,8 @@ def post(request):
     # returns queryset of tickets
     tickets = tickets.annotate(content_type=Value('TICKET', CharField()))
 
+    is_review = False
+
     # combine and sort the two types of posts
     posts = sorted(
         chain(reviews, tickets),
@@ -85,6 +90,7 @@ def post(request):
 
     context = {
         'posts': posts,
+        'is_review': is_review,
     }
     return render(request, 'post.html', context=context)
 
@@ -139,6 +145,8 @@ def review(request, ticket_id):
     ticket = Ticket.objects.get(id=ticket_id)
     review_form = ReviewForm()
 
+    is_review = True
+
     if request.method == 'POST':
 
         review_form = ReviewForm(request.POST)
@@ -153,6 +161,7 @@ def review(request, ticket_id):
     context = {
         'ticket': ticket,
         'review_form': review_form,
+        'is_review': is_review,
     }
     return render(request, 'review.html', context=context)
 

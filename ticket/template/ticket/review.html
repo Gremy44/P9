@@ -6,8 +6,11 @@
 
     <form method="post">
         {{review_form.as_p}}
+        <div class="btn-post">
         <button type="submit" class="validate">Envoyer</button>
         {% csrf_token %}
     </form>
 
+    <button class="back"><a href="{% url 'post' %}">Retour</a></button>
+    </div>
 {% endblock content %}

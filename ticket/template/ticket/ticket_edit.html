@@ -7,7 +7,9 @@
         {{ edit_photo }}
         <hr>
         {% csrf_token %}
+        <div class="btn-post">
         <button class="validate" type="submit" >Sauvegarder</button>
     </form>
     <button class="back"><a href="{% url 'post' %}">Retour</a></button>
+    </div>
 {% endblock content %}

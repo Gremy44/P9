@@ -10,9 +10,10 @@
     <form method="post">
         {{ edit_form.as_p }}
         {% csrf_token %}
-        <button class="validate" type="submit" >Sauvegarder</button>
+        <div class="btn-post">
+            <button class="validate" type="submit" >Sauvegarder</button>
     </form>
-    
+        
     <button class="back"><a href="{% url 'post' %}">Retour</a></button>
-
+        </div>
 {% endblock content %}

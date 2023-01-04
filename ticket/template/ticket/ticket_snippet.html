@@ -11,7 +11,7 @@
     <p>Commentaire : {{post.content}}</p>
     <img src="{{ post.photo.image.url }}" alt="">
 
-    {% if post.has_review == False %}
+    {% if post.has_review == False and is_review == False %}
         <button class="review"><a href="{% url 'review' post.id %}">Créer une critique</a></button>
     {% endif %}
 </div>
