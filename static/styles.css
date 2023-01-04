@@ -61,6 +61,7 @@ li{
    ---------------------------------------------------------------*/
 
 h1.title{
+    text-align: center;
     color:whitesmoke;
     font-size: 5em;
     text-shadow: 0 0 35px grey;
