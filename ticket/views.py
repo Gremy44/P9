@@ -66,7 +66,7 @@ def feed(request):
         'posts': posts,
         'is_review': is_review,
     }
-    return render(request, 'feed.html', context=context)
+    return render(request, 'ticket/feed.html', context=context)
 
 
 @login_required
@@ -92,7 +92,7 @@ def post(request):
         'posts': posts,
         'is_review': is_review,
     }
-    return render(request, 'post.html', context=context)
+    return render(request, 'ticket/post.html', context=context)
 
 
 @login_required
@@ -129,7 +129,7 @@ def ticket_create(request):
                 review.ticket = ticket
                 review.save()
 
-        return redirect('feed')
+        return redirect('ticket/feed')
 
     context = {
         'ticket_form': ticket_form,
@@ -137,7 +137,7 @@ def ticket_create(request):
         'review_form': review_form,
         'review_state': review_state,
     }
-    return render(request, 'ticket_create.html', context=context)
+    return render(request, 'ticket/ticket_create.html', context=context)
 
 
 @login_required
@@ -156,19 +156,19 @@ def review(request, ticket_id):
             review.author = request.user
             review.ticket = ticket
             review.save()
-        return redirect('feed')
+        return redirect('ticket/feed')
 
     context = {
         'ticket': ticket,
         'review_form': review_form,
         'is_review': is_review,
     }
-    return render(request, 'review.html', context=context)
+    return render(request, 'ticket/review.html', context=context)
 
 
 @login_required
 def edit_ticket(request, ticket_id):
-    ticket = get_object_or_404(Ticket, id=ticket_id)
+    ticket = get_object_or_404(Ticket, id=ticket_id, author=request.user)
     edit_form = TicketForm(instance=ticket)
     edit_photo = PhotoForm(instance=ticket.photo)
     if request.method == 'POST':
@@ -178,16 +178,17 @@ def edit_ticket(request, ticket_id):
             if edit_form.is_valid():
                 edit_form.save()
                 edit_photo.save()
-                return redirect('post')
+                return redirect('ticket/post')
     context = {'edit_form': edit_form,
                'edit_photo': edit_photo,
                }
-    return render(request, 'ticket_edit.html', context=context)
+    return render(request, 'ticket/ticket_edit.html', context=context)
 
 
 @login_required
 def edit_review(request, review_id):
-    review = get_object_or_404(Review, id=review_id)
+
+    review = get_object_or_404(Review, id=review_id, author=request.user)
     ticket = review.ticket
 
     edit_form = ReviewForm(instance=review)
@@ -196,29 +197,29 @@ def edit_review(request, review_id):
             edit_form = ReviewForm(request.POST, instance=review)
             if edit_form.is_valid():
                 edit_form.save()
-                return redirect('post')
+                return redirect('ticket/post')
     context = {'edit_form': edit_form,
                'review_id': review.id,
                'ticket': ticket,
                }
-    return render(request, 'review_edit.html', context=context)
+    return render(request, 'ticket/review_edit.html', context=context)
 
 
 @login_required
 def delete_ticket(request, ticket_id):
-    ticket = get_object_or_404(Ticket, id=ticket_id)
+    ticket = get_object_or_404(Ticket, id=ticket_id, author=request.user)
     if request.method == 'POST':
         ticket.delete()
-        return redirect('post')
+        return redirect('ticket/post')
 
     return HttpResponse(status=403)
 
 
 @login_required
 def delete_review(request, review_id):
-    review = get_object_or_404(Review, id=review_id)
+    review = get_object_or_404(Review, id=review_id, author=request.user)
     if request.method == 'POST':
         review.delete()
-        return redirect('post')
+        return redirect('ticket/post')
 
     return HttpResponse(status=403)

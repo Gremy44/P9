@@ -2,7 +2,7 @@
 
 {% block content %}
 
-    {% include 'ticket_snippet.html' with post=ticket %} 
+    {% include 'ticket/ticket_snippet.html' with post=ticket %} 
 
     <form method="post">
         {{review_form.as_p}}

@@ -6,7 +6,7 @@ class PhotoForm(forms.ModelForm):
     class Meta:
         model = models.Photo
         fields = ['image']
-
+        
 
 class TicketForm(forms.ModelForm):
     edit_ticket = forms.BooleanField(widget=forms.HiddenInput, initial=True)

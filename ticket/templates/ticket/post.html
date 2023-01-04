@@ -4,7 +4,7 @@
 
     {% for post in posts %}
         {% if post.content_type == 'TICKET' %}
-            {% include 'ticket_snippet.html' with post=post %}
+            {% include 'ticket/ticket_snippet.html' with post=post %}
             <div class="btn-post">
                 <button class="edit" type="button"><a href="{% url 'edit_ticket' post.id %}">Editer mon ticket</a></button>
                 <form method="post" action="{% url 'delete_ticket' post.id %}">
@@ -14,7 +14,7 @@
                 </form>
             </div>
         {% elif post.content_type == 'REVIEW' %}
-            {% include 'review_snippet.html' with post=post %}
+            {% include 'ticket/review_snippet.html' with post=post %}
             <div class="btn-post">
                 <button class="edit"><a href="{% url 'edit_review' post.id %}">Editer ma critique</a></button>
                 <form method="post" action="{% url 'delete_review' post.id %}">

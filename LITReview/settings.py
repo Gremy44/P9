@@ -58,9 +58,7 @@ TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [
-            BASE_DIR / "template/LITReview",
-            "users/template/users",
-            "ticket/template/ticket",
+            BASE_DIR / "templates/",
         ],
         'APP_DIRS': True,
         'OPTIONS': {

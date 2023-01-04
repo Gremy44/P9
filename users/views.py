@@ -13,7 +13,7 @@ def index(request):
 
 def logout_user(request):
     logout(request)
-    return redirect('login')
+    return redirect('users/login')
 
 
 class LoginPageView(View):
@@ -49,7 +49,7 @@ def registration_page(request):
             user = form.save()
             login(request, user)
             return redirect(settings.LOGIN_REDIRECT_URL)
-    return render(request, 'registration.html', context={'form': form})
+    return render(request, 'users/registration.html', context={'form': form})
 
 
 @login_required
@@ -85,7 +85,7 @@ def subscription(request):
         'followed': abonnements,
     }
 
-    return render(request, 'subscription.html', context=context)
+    return render(request, 'users/subscription.html', context=context)
 
 
 @login_required
