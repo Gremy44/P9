@@ -161,14 +161,17 @@ def review(request, ticket_id):
 def edit_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     edit_form = TicketForm(instance=ticket)
+    edit_photo = PhotoForm(instance=ticket.photo)
     if request.method == 'POST':
         if 'edit_ticket' in request.POST:
             edit_form = TicketForm(request.POST, instance=ticket)
+            edit_photo = PhotoForm(request.POST, instance=ticket.photo)
             if edit_form.is_valid():
                 edit_form.save()
-                return redirect('feed')
+                edit_photo.save()
+                return redirect('post')
     context = {'edit_form': edit_form,
-               'ticket_id': ticket.id,
+               'edit_photo': edit_photo,
                }
     return render(request, 'ticket_edit.html', context=context)
 
@@ -184,7 +187,7 @@ def edit_review(request, review_id):
             edit_form = ReviewForm(request.POST, instance=review)
             if edit_form.is_valid():
                 edit_form.save()
-                return redirect('feed')
+                return redirect('post')
     context = {'edit_form': edit_form,
                'review_id': review.id,
                'ticket': ticket,
@@ -197,7 +200,7 @@ def delete_ticket(request, ticket_id):
     ticket = get_object_or_404(Ticket, id=ticket_id)
     if request.method == 'POST':
         ticket.delete()
-        return redirect('feed')
+        return redirect('post')
 
     return HttpResponse(status=403)
 
@@ -207,6 +210,6 @@ def delete_review(request, review_id):
     review = get_object_or_404(Review, id=review_id)
     if request.method == 'POST':
         review.delete()
-        return redirect('feed')
+        return redirect('post')
 
     return HttpResponse(status=403)

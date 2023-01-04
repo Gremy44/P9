@@ -3,8 +3,11 @@
     <h2>Modifier le ticket</h2>
     <form method="post">
         {{ edit_form.as_p }}
+        <hr>
+        {{ edit_photo }}
+        <hr>
         {% csrf_token %}
         <button class="validate" type="submit" >Sauvegarder</button>
     </form>
-    <button class="back"><a href="{% url 'feed' %}">Retour</a></button>
+    <button class="back"><a href="{% url 'post' %}">Retour</a></button>
 {% endblock content %}

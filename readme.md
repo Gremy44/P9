@@ -45,7 +45,7 @@ Une fois que vous avez démarré le serveur local, vous arriverez sur la page de
 Page principale, affiche les tickets et critiques des personnes que vous suivez et vous-même du plus récent au plus ancien.
 #### -Posts
 Cette page liste vos tickets et reviews, pour lecture, modification ou suppression.
-#### Abonnements
+#### -Abonnements
 Cette page liste les personnes que vous suivez avec la possibilité d'en suivre des nouvelles ou de vous désabonner à celle que vous suivez déjà.
 #### -Déconnexion
 Se déconnecte de votre profile et vous renvoi sur la page de déconnexion.
